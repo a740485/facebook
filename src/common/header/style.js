@@ -3,8 +3,10 @@ import styled from "styled-components";
 export const HeaderWrapper = styled.div`
     width: 100%;
     height: 56px;
-    /* background-color: #ddd; */
+    background-color: #fff;
     position: fixed;
+    top: 0;
+    left: 0;
     box-shadow: 0 0 8px #ddd;
 `;
 
@@ -27,10 +29,21 @@ export const Left = styled.div`
 
     .search {
         position: absolute;
-        left: 72px;
-        top: 20px;
+
+        left: 60px;
+        top: 8px;
+        box-sizing: border-box;
+        height: 40px;
+        width: 40px;
+        padding: 10px;
         color: rgb(91, 93, 97);
         z-index: 1;
+
+        @media screen and (max-width: 1260px) {
+            /* font-size: 20px; */
+            border-radius: 50%;
+            background-color: rgb(238, 240, 243);
+        }
     }
 `;
 
@@ -55,10 +68,16 @@ export const Search = styled.input.attrs({
         border: none;
         outline: none;
     }
+
+    @media screen and (max-width: 1260px) {
+        visibility: hidden;
+    }
 `;
 
+// ========== Center ===========
 export const Center = styled.div`
-    width: 600px;
+    max-width: 600px;
+    width: 40%;
     height: 100%;
     text-align: center;
     margin: 0 auto;
@@ -90,7 +109,8 @@ export const CenterItem = styled.div`
 `;
 
 export const Right = styled.div`
-    width: 320px;
+    /* width: 320px; */
+    margin-right: 10px;
     height: 100%;
     float: right;
     overflow: hidden;
@@ -109,15 +129,21 @@ export const UserInfo = styled.div`
     :hover {
         background: rgb(242, 242, 242);
     }
+
+    > {
+        height: 28px;
+        width: 28px;
+
+        background: rgb(17, 241, 144);
+        border-radius: 100%;
+    }
+
+    @media screen and (max-width: 1260px) {
+        visibility: hidden;
+    }
 `;
 
-export const UserImg = styled.div`
-    height: 28px;
-    width: 28px;
-
-    background: rgb(17, 241, 144);
-    border-radius: 100%;
-`;
+export const UserImg = styled.div``;
 
 export const UserName = styled.div`
     height: 19px;

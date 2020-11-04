@@ -1,4 +1,17 @@
 {
     "success":true,
-    "data": "get Data API Success"
+    "mainData": [
+        {
+            "id":1,
+            "ownerImg":"http://fakeimg.pl/28x28",
+            "ownerName":"東森新聞",
+            "time":"4小時",
+            "title":"#放假去哪編：又多4人確診了！ 最新消息都在這👉https://goo.gl/Ui51Xe #武漢肺炎 #確診",
+            "img": "http://fakeimg.pl/500x260",
+            "likeAmount":171,
+            "msgAmount":2,
+            "shareAmount":1
+        }   
+        
+    ]
 }

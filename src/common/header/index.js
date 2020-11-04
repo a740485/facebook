@@ -34,6 +34,8 @@ import {
 
 class Header extends React.Component {
     render() {
+        const { userInfo } = this.props;
+        console.log();
         return (
             <HeaderWrapper>
                 <Left>
@@ -63,8 +65,8 @@ class Header extends React.Component {
                 </Center>
                 <Right>
                     <UserInfo>
-                        <UserImg />
-                        <UserName>一二三</UserName>
+                        <img src={userInfo.get("img")} alt="11" />
+                        <UserName>{userInfo.get("name")}</UserName>
                     </UserInfo>
                     <RightItem>
                         <FontAwesomeIcon className="item" icon={faPlus} />
@@ -87,7 +89,9 @@ class Header extends React.Component {
     }
 }
 
-const mapState = (state) => ({});
+const mapState = (state) => ({
+    userInfo: state.getIn(["header", "userInfo"]),
+});
 
 const mapDispatch = (dispatch) => ({});
 export default connect(mapState, mapDispatch)(Header);

@@ -28,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
+        background: rgb(238, 240, 243);
     }
     ol, ul {
         list-style: none;

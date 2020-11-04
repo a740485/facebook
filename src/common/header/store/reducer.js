@@ -3,7 +3,10 @@ import * as constants from "./constants";
 
 const defaultState = fromJS({
     loginState: true,
-    apiData: "no api data",
+    userInfo: {
+        name: "阿寶",
+        img: "http://fakeimg.pl/28x28",
+    },
 });
 
 const reducer = (state = defaultState, action) => {
