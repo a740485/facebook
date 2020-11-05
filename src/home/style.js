@@ -122,6 +122,7 @@ export const FriendMsgList = styled.div`
     width: 100%;
     padding-left: 10px;
     border-bottom: solid 1px rgb(195, 198, 201);
+    margin-bottom: 50px;
 `;
 
 export const FriendListMsgTitle = styled.div`
@@ -250,6 +251,10 @@ export const ContentListItem = styled.div`
     margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 1px 2px rgb(205, 205, 205);
+
+    .mainImg {
+        width: 500px;
+    }
 `;
 
 export const ContentListOwner = styled.div`

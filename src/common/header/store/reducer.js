@@ -2,19 +2,17 @@ import { fromJS } from "immutable";
 import * as constants from "./constants";
 
 const defaultState = fromJS({
-    loginState: true,
-    userInfo: {
-        name: "阿寶",
-        img: "http://fakeimg.pl/28x28",
-    },
+    loginState: false,
+    userInfo: {},
 });
 
 const reducer = (state = defaultState, action) => {
     switch (action.type) {
-        case constants.TESTACTION:
-            return state.set("loginState", false);
-        case constants.GET_API_DATA:
-            return state.set("apiData", action.result);
+        case constants.GET_USER_DATA:
+            return state.merge({
+                loginState: action.loginState,
+                userInfo: action.userInfo,
+            });
         default:
             return state;
     }

@@ -13,6 +13,7 @@ import {
     FriendListMsgTitle,
     ListItem,
 } from "../style";
+import { actionCreators } from "../store";
 
 class FriendList extends React.Component {
     render() {
@@ -29,8 +30,8 @@ class FriendList extends React.Component {
                     {friendList.map((item, index) => {
                         return (
                             <ListItem key={index}>
-                                <img src={item.img} alt="11" />
-                                <p>{item.name}</p>
+                                <img src={item.get("img")} alt="11" />
+                                <p>{item.get("name")}</p>
                             </ListItem>
                         );
                     })}
@@ -38,11 +39,19 @@ class FriendList extends React.Component {
             </FriendListWrapper>
         );
     }
+
+    componentDidMount() {
+        this.props.getFriendList();
+    }
 }
 const mapState = (state) => ({
     friendList: state.getIn(["home", "friendList"]),
 });
 
-const mapDispatch = (dispatch) => ({});
+const mapDispatch = (dispatch) => ({
+    getFriendList() {
+        dispatch(actionCreators.getFriendList());
+    },
+});
 
 export default connect(mapState, mapDispatch)(FriendList);

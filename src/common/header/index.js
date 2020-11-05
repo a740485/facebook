@@ -27,7 +27,6 @@ import {
     Right,
     CenterItem,
     UserInfo,
-    UserImg,
     UserName,
     RightItem,
 } from "./style";
@@ -87,11 +86,20 @@ class Header extends React.Component {
             </HeaderWrapper>
         );
     }
+
+    componentDidMount() {
+        this.props.getUserInfo();
+    }
 }
 
 const mapState = (state) => ({
+    loginState: state.getIn(["header", "loginState"]),
     userInfo: state.getIn(["header", "userInfo"]),
 });
 
-const mapDispatch = (dispatch) => ({});
+const mapDispatch = (dispatch) => ({
+    getUserInfo() {
+        dispatch(actionCreators.getUserInfo());
+    },
+});
 export default connect(mapState, mapDispatch)(Header);

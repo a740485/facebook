@@ -143,8 +143,6 @@ export const UserInfo = styled.div`
     }
 `;
 
-export const UserImg = styled.div``;
-
 export const UserName = styled.div`
     height: 19px;
     display: inline-block;

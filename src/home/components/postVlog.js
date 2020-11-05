@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVideo, faImages, faLaugh } from "@fortawesome/free-solid-svg-icons";
 import { PostVlogBox, VlogUpper, VlogItem } from "../style";
-
+// import { actionCreators } from "../store";
 class PostVlog extends React.Component {
     render() {
         return (

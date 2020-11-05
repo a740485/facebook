@@ -1,49 +1,7 @@
 {
     "success": true,
-    "data":{
-        "userInfo":{"name":"阿寶","img":"http://fakeimg.pl/28x28"},
-        "friendList":[
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_1"
-            },
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_2"
-            },
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_3"
-            },
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_4"
-            },
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_5"
-            },
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_6"
-            },
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_7"
-            },
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_8"
-            },
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_9"
-            },
-            {
-                "img": "http://fakeimg.pl/28x28",
-                "name":"friend_10"
-            }
-        ]
-    }
+    "loginState": true,
+    "userInfo":{"id":1,"name":"阿寶","img":"http://fakeimg.pl/28x28"}
+    
     
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { InfoListWrapper, ListItem } from "../style";
-
+// import { actionCreators } from "../store";
 class InfoList extends React.Component {
     render() {
         return (
