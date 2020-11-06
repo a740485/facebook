@@ -4,6 +4,10 @@ import { Route, BrowserRouter } from "react-router-dom";
 import store from "./store";
 
 import Home from "./home";
+import Watch from "./watch";
+import Market from "./market";
+import Societies from "./societies";
+import Game from "./game";
 
 class App extends React.Component {
     render() {
@@ -11,6 +15,10 @@ class App extends React.Component {
             <Provider store={store}>
                 <BrowserRouter>
                     <Route path="/" exact component={Home} />
+                    <Route path="/watch" exact component={Watch} />
+                    <Route path="/market" exact component={Market} />
+                    <Route path="/societies" exact component={Societies} />
+                    <Route path="/game" exact component={Game} />
                 </BrowserRouter>
             </Provider>
         );

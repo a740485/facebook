@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
+export const HeaderBlock = styled.div`
+    width: 100%;
+    height: 56px;
+`;
+
 export const HeaderWrapper = styled.div`
+    position: relative;
     width: 100%;
     height: 56px;
     background-color: #fff;
@@ -11,15 +17,44 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const Left = styled.div`
+    position: absolute;
     width: 360px;
-    height: 56px;
+    /* height: 56px; */
     float: left;
     box-sizing: border-box;
-    /* padding: 0 20px; */
     background-color: none;
+    position: relative;
+    border-radius: 0 10px 10px 10px;
+
+    &.focus {
+        position: absolute;
+        box-shadow: -5px 3px 10px 10px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+`;
+
+export const SearchListBody = styled.div`
+    width: 360px;
+    /* height: 100px; */
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+`;
+
+export const SearchListItem = styled.div`
+    height: 56px;
+    box-sizing: border-box;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(188, 190, 192);
+`;
+
+export const SearchListHeader = styled.div`
+    width: 360px;
+    height: 56px;
     display: flex;
     align-items: center;
-    position: relative;
 
     .logo {
         width: 40px;
@@ -29,15 +64,14 @@ export const Left = styled.div`
 
     .search {
         position: absolute;
-
         left: 60px;
-        top: 8px;
         box-sizing: border-box;
-        height: 40px;
+        height: 56px;
+        line-height: 56px;
         width: 40px;
         padding: 10px;
         color: rgb(91, 93, 97);
-        z-index: 1;
+        z-index: 2;
 
         @media screen and (max-width: 1260px) {
             /* font-size: 20px; */
@@ -83,28 +117,47 @@ export const Center = styled.div`
     margin: 0 auto;
     position: absolute;
     left: 0;
-    right: 0;
+    right: 80px;
     z-index: 0;
     display: flex;
     align-items: center;
 `;
 
 export const CenterItem = styled.div`
-    width: calc(600px / 5);
-    height: 100%;
+    width: 111px;
+    position: relative;
+    box-sizing: border-box;
+    height: 56px;
     line-height: 30px;
     font-size: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    &:hover {
-        height: 50px;
-        background: rgb(242, 242, 242);
-        border-radius: 5px;
+
+    &.onPage {
+        ::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 3px;
+            top: 53px;
+            background: rgb(23, 108, 240);
+        }
     }
+    &.notPage {
+        &:hover {
+            height: 50px;
+            background: rgb(242, 242, 242);
+            border-radius: 5px;
+        }
+    }
+
     .item {
         color: rgb(172, 173, 175);
+    }
+    .onPage {
+        color: rgb(23, 108, 240);
     }
 `;
 

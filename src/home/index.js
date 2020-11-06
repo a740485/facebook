@@ -25,6 +25,7 @@ import {
     DoSomeThingBox,
 } from "./style";
 import { actionCreators } from "./store/";
+import { actionCreators as headerActionCreators } from "../common/header/store";
 class Home extends React.Component {
     render() {
         const { mainData } = this.props;
@@ -123,6 +124,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.props.changeHomeData();
+        this.props.changePage();
     }
 }
 
@@ -133,6 +135,9 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
     changeHomeData() {
         dispatch(actionCreators.getHomeData());
+    },
+    changePage() {
+        dispatch(headerActionCreators.changePageIn("home"));
     },
 });
 

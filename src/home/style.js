@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const HomeWrapper = styled.div`
-    margin-top: 56px;
     box-sizing: border-box;
     padding: 0 5px 0;
     display: flex;
@@ -52,11 +51,13 @@ export const FriendListWrapper = styled.div`
 
 // ========== Info List ==========
 export const InfoListWrapper = styled.div`
+    position: relative;
     max-width: 350px;
     width: 25%;
     height: 100vh;
     position: fixed;
     overflow-y: auto;
+    z-index: -1;
 
     ::-webkit-scrollbar {
         -webkit-appearance: none;
