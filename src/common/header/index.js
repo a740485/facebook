@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faSearch,
@@ -11,13 +11,21 @@ import {
     faPlus,
     faBell,
     faCaretDown,
+    faTimes,
+    faCog,
+    faQuestionCircle,
+    faMoon,
+    faSignOutAlt,
+    faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
 import {
     faFacebook,
     faYoutube,
     faFacebookMessenger,
 } from "@fortawesome/free-brands-svg-icons";
 import { actionCreators } from "./store";
+import { actionCreators as loginActionCreator } from "../../login/store";
 import { Link } from "react-router-dom";
 import {
     HeaderBlock,
@@ -33,24 +41,144 @@ import {
     UserInfo,
     UserName,
     RightItem,
+    AccountView,
+    AccountItem,
 } from "./style";
 
 class Header extends React.Component {
+    getSearchListBody() {
+        const {
+            searchFocus,
+            searchBodyMouseIn,
+            handleListBodyEnter,
+            handleListBodyLeave,
+            searchHistory,
+        } = this.props;
+
+        function searchHistoryView() {
+            if (searchHistory.size) {
+                return searchHistory.map((item, index) => {
+                    return (
+                        <SearchListItem key={index}>
+                            <div className="iconBox">
+                                <FontAwesomeIcon
+                                    className="icon"
+                                    icon={faClock}
+                                />
+                            </div>
+                            <div className="item">{item}</div>
+                            <div className="deleteBox">
+                                <FontAwesomeIcon icon={faTimes} />
+                            </div>
+                        </SearchListItem>
+                    );
+                });
+            } else {
+                return (
+                    <SearchListItem className="noData" key="0">
+                        沒有近期搜尋紀錄
+                    </SearchListItem>
+                );
+            }
+        }
+
+        if (searchFocus || searchBodyMouseIn) {
+            return (
+                <SearchListBody
+                    onMouseEnter={handleListBodyEnter}
+                    onMouseLeave={handleListBodyLeave}
+                >
+                    {searchHistoryView()}
+                </SearchListBody>
+            );
+        }
+    }
+
+    getAccountView() {
+        const {
+            showAccountView,
+            handleAccountViewEnter,
+            handleAccountViewLeave,
+            hadleLogout,
+        } = this.props;
+        if (showAccountView) {
+            return (
+                <AccountView
+                    onMouseEnter={handleAccountViewEnter}
+                    onMouseLeave={handleAccountViewLeave}
+                >
+                    <AccountItem>
+                        <div className="iconBox">
+                            <FontAwesomeIcon icon={faCog} />
+                        </div>
+                        <p>設定和隱私</p>
+                        <FontAwesomeIcon
+                            className="nextIcon"
+                            icon={faChevronRight}
+                        />
+                    </AccountItem>
+                    <AccountItem>
+                        <div className="iconBox">
+                            <FontAwesomeIcon icon={faQuestionCircle} />
+                        </div>
+                        <p>協助和支援</p>
+                        <FontAwesomeIcon
+                            className="nextIcon"
+                            icon={faChevronRight}
+                        />
+                    </AccountItem>
+                    <AccountItem>
+                        <div className="iconBox">
+                            <FontAwesomeIcon icon={faMoon} />
+                        </div>
+                        <p>顯示方式偏好設定</p>
+                        <FontAwesomeIcon
+                            className="nextIcon"
+                            icon={faChevronRight}
+                        />
+                    </AccountItem>
+                    <AccountItem onClick={hadleLogout}>
+                        <div className="iconBox">
+                            <FontAwesomeIcon icon={faSignOutAlt} />
+                        </div>
+                        <p>登出</p>
+                        <FontAwesomeIcon
+                            className="nextIcon"
+                            icon={faChevronRight}
+                        />
+                    </AccountItem>
+                </AccountView>
+            );
+        }
+    }
+
     render() {
         const {
+            loginState,
             userInfo,
             pageIn,
             searchFocus,
             handleInputFocus,
+            searchBodyMouseIn,
             handleInputBlur,
-            searchHistory,
+            handleAccountViewBlur,
+            showAccountView,
+            handleAccountViewShow,
         } = this.props;
+
+        if (!loginState) {
+            return <Redirect to="/login" />;
+        }
 
         return (
             <React.Fragment>
                 <HeaderBlock />
                 <HeaderWrapper>
-                    <Left className={searchFocus ? "focus" : null}>
+                    <Left
+                        className={
+                            searchFocus || searchBodyMouseIn ? "focus" : null
+                        }
+                    >
                         <SearchListHeader>
                             <Link to="/">
                                 <FontAwesomeIcon
@@ -58,26 +186,27 @@ class Header extends React.Component {
                                     icon={faFacebook}
                                 />
                             </Link>
-                            <FontAwesomeIcon
+                            <label
+                                htmlFor="headerSearchInput"
                                 className="search"
-                                icon={faSearch}
-                            />
+                            >
+                                <FontAwesomeIcon
+                                    icon={faSearch}
+                                    className="searchIcon"
+                                />
+                            </label>
                             <Search
+                                id="headerSearchInput"
+                                className={
+                                    searchFocus || searchBodyMouseIn
+                                        ? "searchInput"
+                                        : null
+                                }
                                 onFocus={() => handleInputFocus()}
                                 onBlur={handleInputBlur}
                             />
                         </SearchListHeader>
-                        {searchFocus ? (
-                            <SearchListBody>
-                                {searchHistory.map((item, index) => {
-                                    return (
-                                        <SearchListItem key={index}>
-                                            {item}
-                                        </SearchListItem>
-                                    );
-                                })}
-                            </SearchListBody>
-                        ) : null}
+                        {this.getSearchListBody()}
                     </Left>
                     <Center>
                         <Link to="/">
@@ -183,29 +312,33 @@ class Header extends React.Component {
                         <RightItem>
                             <FontAwesomeIcon className="item" icon={faBell} />
                         </RightItem>
-                        <RightItem>
+                        <RightItem
+                            onBlur={handleAccountViewBlur}
+                            onClick={() => {
+                                handleAccountViewShow(showAccountView);
+                            }}
+                        >
                             <FontAwesomeIcon
                                 className="item"
                                 icon={faCaretDown}
                             />
                         </RightItem>
+                        {this.getAccountView()}
                     </Right>
                 </HeaderWrapper>
             </React.Fragment>
         );
     }
-
-    componentDidMount() {
-        this.props.getUserInfo();
-    }
 }
 
 const mapState = (state) => ({
-    loginState: state.getIn(["header", "loginState"]),
-    userInfo: state.getIn(["header", "userInfo"]),
+    loginState: state.getIn(["login", "loginState"]),
+    userInfo: state.getIn(["login", "userInfo"]),
     pageIn: state.getIn(["header", "pageIn"]),
     searchFocus: state.getIn(["header", "searchFocus"]),
+    searchBodyMouseIn: state.getIn(["header", "searchBodyMouseIn"]),
     searchHistory: state.getIn(["header", "searchHistory"]),
+    showAccountView: state.getIn(["header", "showAccountView"]),
 });
 
 const mapDispatch = (dispatch) => ({
@@ -213,11 +346,29 @@ const mapDispatch = (dispatch) => ({
         dispatch(actionCreators.getUserInfo());
     },
     handleInputFocus() {
-        // dispatch(actionCreators.getSeachHistory());
+        dispatch(actionCreators.getSeachHistory());
         dispatch(actionCreators.searchFocus());
     },
     handleInputBlur() {
         dispatch(actionCreators.searchBlur());
+    },
+    handleListBodyEnter() {
+        dispatch(actionCreators.listBodyEnter());
+    },
+    handleListBodyLeave() {
+        dispatch(actionCreators.listBodyLeave());
+    },
+    handleAccountViewShow(showFlag) {
+        dispatch(actionCreators.showAccountView(showFlag));
+    },
+    handleAccountViewEnter() {
+        dispatch(actionCreators.accountViewEnter());
+    },
+    handleAccountViewLeave() {
+        dispatch(actionCreators.accountViewLeave());
+    },
+    hadleLogout() {
+        dispatch(loginActionCreator.accountLogout());
     },
 });
 export default connect(mapState, mapDispatch)(Header);

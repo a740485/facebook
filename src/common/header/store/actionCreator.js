@@ -64,7 +64,7 @@ export const searchFocus = () => ({
 });
 
 export const getSeachHistory = () => {
-    let list = ["1", "2"];
+    let list = fromJS(["Facebook", "2"]);
     return {
         type: constants.GET_SEARCH_HISTORY,
         list,
@@ -73,4 +73,25 @@ export const getSeachHistory = () => {
 
 export const searchBlur = () => ({
     type: constants.SEARCH_BLUR,
+});
+
+export const listBodyEnter = () => ({
+    type: constants.SEARCH_BODY_MOUSE_ENTER,
+});
+
+export const listBodyLeave = () => ({
+    type: constants.SEARCH_BODY_MOUSE_LEAVE,
+});
+
+export const showAccountView = (showFlag) => ({
+    type: constants.SHOW_ACCOUNT_VIEW,
+    showFlag: !showFlag,
+});
+
+export const accountViewEnter = () => ({
+    type: constants.ACCOUNT_VIEW_ENTER,
+});
+
+export const accountViewLeave = () => ({
+    type: constants.ACCOUNT_VIEW_LEAVE,
 });

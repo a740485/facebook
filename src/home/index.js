@@ -5,14 +5,13 @@ import InfoList from "./components/infoList";
 import FriendList from "./components/friendList";
 import PostVlog from "./components/postVlog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisH, faShare } from "@fortawesome/free-solid-svg-icons";
 import {
-    faEllipsisH,
-    faLaughSquint,
     faThumbsUp,
-    faSurprise,
     faComment,
-    faShare,
-} from "@fortawesome/free-solid-svg-icons";
+    faSurprise,
+    faLaughSquint,
+} from "@fortawesome/free-regular-svg-icons";
 import {
     HomeWrapper,
     MiddleWrapper,

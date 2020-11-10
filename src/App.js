@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { Route, BrowserRouter } from "react-router-dom";
 import store from "./store";
 
+import Login from "./login";
 import Home from "./home";
 import Watch from "./watch";
 import Market from "./market";
@@ -14,6 +15,7 @@ class App extends React.Component {
         return (
             <Provider store={store}>
                 <BrowserRouter>
+                    <Route path="/login" exact component={Login} />
                     <Route path="/" exact component={Home} />
                     <Route path="/watch" exact component={Watch} />
                     <Route path="/market" exact component={Market} />
